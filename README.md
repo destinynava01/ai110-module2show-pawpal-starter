@@ -42,17 +42,27 @@ pip install -r requirements.txt
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
 
-## 🖥️ Sample Output
-
-Paste a sample of your app's CLI or Streamlit output here so a reader can see what a generated plan looks like:
+## Sample Output
 
 ```
-# e.g.:
-# Daily plan for Biscuit (Golden Retriever):
-#   08:00 — Morning walk (30 min) [priority: high]
-#   09:00 — Feeding (10 min) [priority: high]
-#   ...
+Today's Schedule for Jordan
+8:00 AM - Mochi: Morning walk (30 min, high priority)
+8:30 AM - Luna: Breakfast (10 min, high priority)
+6:00 PM - Mochi: Evening feeding (15 min, medium priority)
 ```
+
+## Implementation Summary
+
+The logic layer in `pawpal_system.py` defines four dataclasses. `Task` represents a
+care activity with a description, scheduled time, duration, priority, recurrence
+frequency, and completion dates. `Pet` stores pet details and its tasks, while
+`Owner` manages multiple pets and combines their tasks with `get_all_tasks()`.
+`Scheduler` retrieves tasks through that owner method, filters them for a selected
+date and completion status, then orders them by scheduled time and priority. This
+keeps scheduling across multiple pets in one place and tracks completion separately
+for each occurrence. When `Scheduler.mark_task_complete()` completes a daily or
+weekly task, it adds the next dated occurrence to the same pet. Run `python main.py`
+to see a sample schedule.
 
 ## 🧪 Testing PawPal+
 
@@ -72,14 +82,12 @@ Sample test output:
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
-
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_by_time()`, `Scheduler.get_tasks()` | `sort_by_time()` sorts tasks chronologically; `get_tasks()` filters for a date and sorts by time, then priority. |
+| Filtering | `Scheduler.filter_tasks()`, `Scheduler.get_tasks()` | `filter_tasks()` can select by pet name and completion status; `get_tasks()` selects tasks due on a date and can include or exclude completed tasks. |
+| Conflict detection | `Scheduler.detect_conflicts()` | Returns warning messages for pending tasks with identical scheduled timestamps on the selected date, including tasks from different pets. It does not detect overlapping durations. |
+| Recurring tasks | `Task.mark_complete()`, `Scheduler.mark_task_complete()`, `Task.is_due_on()` | Completion creates a new task instance for daily tasks on the next day (`timedelta(days=1)`) or weekly tasks seven days later. The scheduler attaches it to the same pet; one-time tasks do not recur. |
 
 ## 📸 Demo Walkthrough
 

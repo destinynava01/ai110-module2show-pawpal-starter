@@ -1,0 +1,41 @@
+classDiagram
+    class Task {
+        +String description
+        +DateTime scheduledAt
+        +int durationMinutes
+        +String frequency
+        +String priority
+        +Set~Date~ completedDates
+        +String status
+        +isDueOn(day) bool
+        +isCompletedOn(day) bool
+        +markComplete(day) Task
+    }
+
+    class Pet {
+        +String name
+        +String species
+        +int age
+        +List~Task~ tasks
+        +addTask(task) void
+    }
+
+    class Owner {
+        +String name
+        +List~Pet~ pets
+        +addPet(name, species, age) Pet
+        +getAllTasks() List~Task~
+    }
+
+    class Scheduler {
+        +sortByTime(tasks) List~Task~
+        +filterTasks(owner, day, completed, petName) List~Task~
+        +getTasks(owner, day, includeCompleted) List~Task~
+        +detectConflicts(owner, day) List~String~
+        +markTaskComplete(owner, task, day) Task
+    }
+
+    Owner "1" --> "0..*" Pet : manages
+    Pet "1" --> "0..*" Task : has
+    Scheduler ..> Owner : retrieves all tasks from
+    Scheduler ..> Task : organizes and completes
