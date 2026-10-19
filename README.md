@@ -64,21 +64,35 @@ for each occurrence. When `Scheduler.mark_task_complete()` completes a daily or
 weekly task, it adds the next dated occurrence to the same pet. Run `python main.py`
 to see a sample schedule.
 
-## 🧪 Testing PawPal+
+## Testing PawPal+
+
+Run the test suite from the project root:
 
 ```bash
-# Run the full test suite:
-pytest
-
-# Run with coverage:
-pytest --cov
+python -m pytest
 ```
 
-Sample test output:
+The tests cover task completion and addition, chronological sorting, filtering by
+pet and completion status, daily and weekly recurrence, one-time task completion,
+and same-time conflict warnings for tasks belonging to the same or different pets.
+
+Successful test run:
 
 ```
-# Paste your pytest output here
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\Navad\Downloads\CodePath\AI110\Project\ai110-module2show-pawpal-starter
+plugins: anyio-4.15.1
+collected 9 items
+
+tests\test_pawpal.py .........                                           [100%]
+
+============================== 9 passed in 0.02s ==============================
 ```
+
+**Confidence level:** ★★★★☆ (4/5). The core scheduling behaviors pass focused tests,
+though more coverage of Streamlit interaction and unusual date/time cases would
+increase confidence.
 
 ## 📐 Smarter Scheduling
 
