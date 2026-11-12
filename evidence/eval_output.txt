@@ -1,0 +1,13 @@
+Model: rule-based
+
+| Scenario | Goal | Consistent | Grounded | Safe | Relevant | Confidence | Result |
+|---|---|---|---|---|---|---|---|
+| dog/4 | more exercise | pass | pass | pass | pass | 0.88 | PASS |
+| dog/0 | puppy training | pass | pass | pass | pass | 1.00 | PASS |
+| dog/10 | medication | pass | pass | pass | pass | 1.00 | PASS |
+| cat/3 | feeding | pass | pass | pass | pass | 1.00 | PASS |
+| cat/3 | litter | pass | pass | pass | pass | 1.00 | PASS |
+| other/2 | clean cage | pass | pass | pass | pass | 1.00 | PASS |
+| dog/4 | astrophysics | pass | pass | pass | pass | 0.00 | PASS |
+
+7/7 scenarios passed. Mean confidence on scenarios with a plan: 0.98.

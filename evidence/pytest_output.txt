@@ -1,0 +1,32 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0 -- <project>\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: <project>
+plugins: anyio-4.16.0
+collecting ... collected 23 items
+
+tests/test_pawpal.py::test_mark_complete_changes_task_status PASSED      [  4%]
+tests/test_pawpal.py::test_adding_task_increases_pet_task_count PASSED   [  8%]
+tests/test_pawpal.py::test_scheduler_sorts_tasks_by_time PASSED          [ 13%]
+tests/test_pawpal.py::test_scheduler_filters_by_pet_name_and_completion PASSED [ 17%]
+tests/test_pawpal.py::test_completing_daily_task_adds_next_days_occurrence_to_same_pet PASSED [ 21%]
+tests/test_pawpal.py::test_completing_weekly_task_adds_next_weeks_occurrence PASSED [ 26%]
+tests/test_pawpal.py::test_completing_one_time_task_does_not_create_another_occurrence PASSED [ 30%]
+tests/test_pawpal.py::test_scheduler_warns_when_different_pets_have_tasks_at_same_time PASSED [ 34%]
+tests/test_pawpal.py::test_scheduler_warns_about_same_pet_conflicts_and_ignores_completed_tasks PASSED [ 39%]
+tests/test_pawpal_ai.py::test_retriever_matches_species_and_goal PASSED  [ 43%]
+tests/test_pawpal_ai.py::test_retriever_returns_nothing_for_irrelevant_goal PASSED [ 47%]
+tests/test_pawpal_ai.py::test_life_stage_boundaries PASSED               [ 52%]
+tests/test_pawpal_ai.py::test_retrieval_changes_output PASSED            [ 56%]
+tests/test_pawpal_ai.py::test_guardrails_reject_bad_and_ungrounded_proposals PASSED [ 60%]
+tests/test_pawpal_ai.py::test_guardrails_handle_non_list_output PASSED   [ 65%]
+tests/test_pawpal_ai.py::test_plan_avoids_conflicts_with_existing_schedule PASSED [ 69%]
+tests/test_pawpal_ai.py::test_plan_skips_duplicates PASSED               [ 73%]
+tests/test_pawpal_ai.py::test_bad_model_falls_back_safely PASSED         [ 78%]
+tests/test_pawpal_ai.py::test_hallucinating_model_is_filtered PASSED     [ 82%]
+tests/test_pawpal_ai.py::test_apply_plan_adds_tasks_without_conflicts PASSED [ 86%]
+tests/test_pawpal_ai.py::test_no_guidelines_means_no_plan PASSED         [ 91%]
+tests/test_pawpal_ai.py::test_confidence_is_scored_and_reflects_quality PASSED [ 95%]
+tests/test_pawpal_ai.py::test_confidence_zero_when_model_output_all_rejected PASSED [100%]
+
+============================= 23 passed in 0.07s ==============================

@@ -1,0 +1,41 @@
+=== Example 1-3: planning ===
+
+INPUT : pet=Mochi (dog, age 4), goal='more exercise'
+OUTPUT: model=rule-based confidence=0.88 verified=True
+   8:00 AM  Morning walk - 30 min, high [dog-exercise] (moved to avoid conflict)
+   6:00 PM  Evening walk - 30 min, medium [dog-exercise]
+TRACE :
+  - Retrieved 1 guideline(s) for dog/adult: dog-exercise
+  - Validated 2 of 2 drafted task(s).
+  - Moved 'Morning walk' to 8:00 AM to avoid a conflict.
+  - Self-check passed: no schedule conflicts.
+  - Confidence: 0.88
+
+INPUT : pet=Luna (cat, age 3), goal='feeding'
+OUTPUT: model=rule-based confidence=1.00 verified=True
+   8:00 AM  Breakfast - 10 min, high [cat-feeding] (moved to avoid conflict)
+  12:00 PM  Refresh water bowl - 5 min, medium [cat-feeding]
+   6:30 PM  Dinner - 10 min, high [cat-feeding]
+TRACE :
+  - Retrieved 1 guideline(s) for cat/adult: cat-feeding
+  - Validated 3 of 3 drafted task(s).
+  - Moved 'Breakfast' to 8:00 AM to avoid a conflict.
+  - Self-check passed: no schedule conflicts.
+  - Confidence: 1.00
+
+INPUT : pet=Mochi (dog, age 4), goal='astrophysics'
+OUTPUT: model=rule-based confidence=0.00 verified=False
+  (no plan)
+TRACE :
+  - Retrieved 0 guideline(s) for dog/adult: none
+  - No relevant guidelines found; no plan generated (guardrail).
+
+=== Guardrail results ===
+
+valid proposal         -> ACCEPTED
+duration 0             -> Rejected item 1: duration out of range
+start time 03:00       -> Rejected item 1: start time outside 05:00-22:00
+frequency 'hourly'     -> Rejected item 1: bad frequency
+invented source_id     -> Rejected item 1: not grounded in a retrieved guideline
+empty description      -> Rejected item 1: description empty or too long
+not an object          -> Rejected item 1: not an object
