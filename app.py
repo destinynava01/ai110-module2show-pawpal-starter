@@ -2,6 +2,7 @@ from datetime import date, datetime, time
 
 import streamlit as st
 
+from pawpal_ai import CareAssistant, apply_plan
 from pawpal_system import Owner, Scheduler, Task
 
 
@@ -73,6 +74,66 @@ if owner.pets:
             pet = owner.pets[selected_pet_index]
             pet.add_task(task)
             st.success(f"Scheduled '{task.description}' for {pet.name}.")
+
+if owner.pets:
+    st.divider()
+    st.subheader("🤖 AI Care Planner")
+    st.caption(
+        "Retrieves care guidelines for your pet, drafts tasks from them, then checks "
+        "the plan against your existing schedule before suggesting it."
+    )
+    if "assistant" not in st.session_state:
+        try:
+            st.session_state.assistant = CareAssistant()
+        except RuntimeError as error:
+            st.session_state.assistant = None
+            st.error(str(error))
+    assistant = st.session_state.assistant
+    if assistant is not None:
+        ai_pet_index = st.selectbox(
+            "Plan for",
+            list(range(len(owner.pets))),
+            format_func=lambda i: f"{owner.pets[i].name} ({owner.pets[i].species})",
+            key="ai_pet",
+        )
+        ai_goal = st.text_input(
+            "Goal (optional)", placeholder="e.g. more exercise, feeding routine, grooming"
+        )
+        ai_day = st.date_input("Plan for date", value=date.today(), key="ai_day")
+        if st.button("Generate plan"):
+            st.session_state.ai_result = assistant.plan(
+                owner, owner.pets[ai_pet_index], ai_goal, ai_day
+            )
+            st.session_state.ai_result_pet = ai_pet_index
+
+        result = st.session_state.get("ai_result")
+        if result is not None:
+            st.caption(f"Model: {result.model_name} · Confidence: {result.confidence:.2f}")
+            if result.proposals:
+                st.table(
+                    [
+                        {
+                            "Time": p.scheduled_at.strftime("%I:%M %p").lstrip("0"),
+                            "Task": p.description,
+                            "Duration (min)": p.duration_minutes,
+                            "Frequency": p.frequency,
+                            "Priority": p.priority,
+                            "Why": f"{p.rationale} [{p.source_id}]",
+                        }
+                        for p in result.proposals
+                    ]
+                )
+                if st.button("Add all to schedule"):
+                    target = owner.pets[st.session_state.ai_result_pet]
+                    count = apply_plan(target, result.proposals)
+                    st.session_state.ai_result = None
+                    st.success(f"Added {count} task(s) to {target.name}.")
+                    st.rerun()
+            else:
+                st.info("No suggestions. Try a different goal.")
+            with st.expander("How the AI built this plan"):
+                for line in result.trace:
+                    st.write("• " + line)
 
 st.divider()
 st.subheader("Today's Schedule")
