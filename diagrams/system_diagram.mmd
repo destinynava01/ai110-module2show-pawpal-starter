@@ -1,0 +1,32 @@
+flowchart TD
+    U([Owner: pet info + goal]) --> UI[Streamlit UI<br/>app.py]
+    UI --> A
+
+    subgraph AI["AI Care Planner - pawpal_ai.py"]
+        A[CareAssistant<br/>orchestrator / agent] --> R[Retriever]
+        KB[(Knowledge base<br/>knowledge/pet_care.json)] --> R
+        R -- retrieved guidelines --> M[Draft model<br/>Claude if API key, else rule-based]
+        M -- raw task proposals --> G{Guardrails<br/>validate_proposals}
+        G -- rejected: bad fields or<br/>ungrounded source --> LOG
+        G -- valid proposals --> C[Check and repair<br/>duplicates, overlaps, shift times]
+        C --> V[Self-check<br/>Scheduler.detect_conflicts]
+        M -. on error: fallback .-> FB[Rule-based drafter]
+        FB --> G
+    end
+
+    SCH[(Owner schedule<br/>pawpal_system.py)] --> C
+    V --> P[Proposed plan + rationale + trace]
+    P --> H{{Human review:<br/>owner accepts or ignores}}
+    H -- Add all to schedule --> SCH
+    SCH --> OUT([Daily schedule shown in UI])
+
+    A & G & C & V --> LOG[(pawpal_ai.log)]
+
+    subgraph TEST["Testing and evaluation"]
+        T1[pytest<br/>tests/test_pawpal_ai.py<br/>tests/test_pawpal.py]
+        T2[eval_ai.py<br/>consistency, grounding,<br/>safety, relevance]
+    end
+    T1 -. tests .-> AI
+    T2 -. runs 7 scenarios .-> AI
+    T2 --> DEV([Developer reads pass/fail report])
+    T1 --> DEV
