@@ -1,0 +1,134 @@
+[
+  {
+    "id": "dog-exercise",
+    "species": ["dog"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Daily dog exercise",
+    "text": "Most adult dogs need 30 to 60 minutes of walking or active play every day, split into at least two outings. Walks relieve boredom, reduce destructive behavior, and support healthy weight. Senior dogs benefit from shorter, gentler walks.",
+    "tags": ["walk", "exercise", "energy", "play", "weight", "outdoor"],
+    "tasks": [
+      {"description": "Morning walk", "time": "07:30", "duration": 30, "frequency": "daily", "priority": "high"},
+      {"description": "Evening walk", "time": "18:00", "duration": 30, "frequency": "daily", "priority": "medium"}
+    ]
+  },
+  {
+    "id": "dog-feeding",
+    "species": ["dog"],
+    "stages": ["adult", "senior"],
+    "title": "Adult dog feeding schedule",
+    "text": "Adult dogs do best with two measured meals a day, roughly 8 to 12 hours apart, with fresh water always available. Consistent meal times help digestion and make appetite changes easy to notice.",
+    "tags": ["feeding", "food", "meal", "diet", "water", "weight"],
+    "tasks": [
+      {"description": "Breakfast", "time": "08:15", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Dinner", "time": "18:45", "duration": 10, "frequency": "daily", "priority": "high"}
+    ]
+  },
+  {
+    "id": "puppy-routine",
+    "species": ["dog"],
+    "stages": ["young"],
+    "title": "Puppy care routine",
+    "text": "Puppies under one year need three to four small meals a day, frequent potty breaks, short training sessions of 5 to 10 minutes, and plenty of rest. Early socialization and house training prevent behavior problems later.",
+    "tags": ["puppy", "training", "feeding", "potty", "socialization", "routine"],
+    "tasks": [
+      {"description": "Puppy meal", "time": "07:00", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Potty break", "time": "07:45", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Training session", "time": "16:00", "duration": 10, "frequency": "daily", "priority": "medium"},
+      {"description": "Puppy meal", "time": "19:00", "duration": 10, "frequency": "daily", "priority": "high"}
+    ]
+  },
+  {
+    "id": "cat-feeding",
+    "species": ["cat"],
+    "stages": ["adult", "senior", "young"],
+    "title": "Cat feeding and hydration",
+    "text": "Adult cats do well with two or more small meals a day. Wet food and clean, fresh water support kidney and urinary health. Scheduled meals prevent overeating and help detect appetite changes early.",
+    "tags": ["feeding", "food", "meal", "water", "hydration", "diet", "weight"],
+    "tasks": [
+      {"description": "Breakfast", "time": "07:30", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Dinner", "time": "18:30", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Refresh water bowl", "time": "12:00", "duration": 5, "frequency": "daily", "priority": "medium"}
+    ]
+  },
+  {
+    "id": "cat-litter",
+    "species": ["cat"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Litter box hygiene",
+    "text": "Scoop the litter box at least once a day and fully replace litter weekly. A dirty box is a leading cause of inappropriate elimination and stress in cats.",
+    "tags": ["litter", "hygiene", "clean", "scoop", "bathroom", "odor"],
+    "tasks": [
+      {"description": "Scoop litter box", "time": "09:00", "duration": 5, "frequency": "daily", "priority": "medium"},
+      {"description": "Replace litter and wash box", "time": "10:00", "duration": 20, "frequency": "weekly", "priority": "medium"}
+    ]
+  },
+  {
+    "id": "cat-enrichment",
+    "species": ["cat"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Indoor cat enrichment",
+    "text": "Indoor cats need 15 to 30 minutes of interactive play daily, such as wand toys or puzzle feeders, to stay active, prevent boredom, and reduce stress-related behavior.",
+    "tags": ["play", "enrichment", "boredom", "exercise", "energy", "toys", "indoor"],
+    "tasks": [
+      {"description": "Interactive play session", "time": "19:30", "duration": 15, "frequency": "daily", "priority": "medium"}
+    ]
+  },
+  {
+    "id": "grooming-brushing",
+    "species": ["dog", "cat"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Coat care and grooming",
+    "text": "Brush short-haired pets weekly and long-haired pets several times a week to reduce shedding and matting. Check ears, nails, and skin during grooming sessions.",
+    "tags": ["grooming", "brush", "coat", "shedding", "nails", "fur", "bath"],
+    "tasks": [
+      {"description": "Brush coat and check ears and nails", "time": "17:00", "duration": 15, "frequency": "weekly", "priority": "low"}
+    ]
+  },
+  {
+    "id": "dental-care",
+    "species": ["dog", "cat"],
+    "stages": ["adult", "senior"],
+    "title": "Dental hygiene",
+    "text": "Brushing a pet's teeth daily or several times a week slows plaque and prevents gum disease, which is common after age three. Use pet-safe toothpaste only.",
+    "tags": ["dental", "teeth", "brush", "mouth", "breath", "gum", "hygiene"],
+    "tasks": [
+      {"description": "Brush teeth", "time": "20:00", "duration": 5, "frequency": "daily", "priority": "low"}
+    ]
+  },
+  {
+    "id": "senior-care",
+    "species": ["dog", "cat"],
+    "stages": ["senior"],
+    "title": "Senior pet care",
+    "text": "Pets aged eight and older benefit from medication and supplement routines given at consistent times, gentle low-impact exercise, joint comfort checks, and vet visits every six months.",
+    "tags": ["senior", "old", "medication", "joint", "arthritis", "medicine", "checkup", "vet"],
+    "tasks": [
+      {"description": "Give medication or joint supplement", "time": "08:00", "duration": 5, "frequency": "daily", "priority": "high"},
+      {"description": "Gentle mobility check", "time": "20:30", "duration": 10, "frequency": "daily", "priority": "medium"}
+    ]
+  },
+  {
+    "id": "medication-adherence",
+    "species": ["dog", "cat", "other"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Medication adherence",
+    "text": "Give prescribed medication at the same times every day and never skip doses. Pair doses with meals when the vet allows it so they become part of the routine.",
+    "tags": ["medication", "medicine", "pill", "dose", "prescription", "vet", "health"],
+    "tasks": [
+      {"description": "Give prescribed medication", "time": "08:30", "duration": 5, "frequency": "daily", "priority": "high"}
+    ]
+  },
+  {
+    "id": "small-pet-care",
+    "species": ["other"],
+    "stages": ["young", "adult", "senior"],
+    "title": "Small pet daily care",
+    "text": "Small pets such as rabbits, guinea pigs, and hamsters need fresh water and food daily, spot-cleaning of the enclosure, and supervised out-of-cage time for exercise and enrichment.",
+    "tags": ["feeding", "water", "cage", "clean", "enclosure", "exercise", "enrichment", "rabbit", "hamster", "guinea"],
+    "tasks": [
+      {"description": "Fresh food and water", "time": "08:00", "duration": 10, "frequency": "daily", "priority": "high"},
+      {"description": "Spot-clean enclosure", "time": "17:30", "duration": 10, "frequency": "daily", "priority": "medium"},
+      {"description": "Supervised out-of-cage time", "time": "19:00", "duration": 20, "frequency": "daily", "priority": "low"}
+    ]
+  }
+]

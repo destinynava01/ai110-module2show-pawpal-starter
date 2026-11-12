@@ -1,2 +1,4 @@
 streamlit>=1.30
 pytest>=7.0
+# Optional: enables Claude-powered drafting when ANTHROPIC_API_KEY is set
+anthropic>=0.40
